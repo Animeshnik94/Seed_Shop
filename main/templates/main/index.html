@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% load goods_tags %}
+
+{% block sidebar %}
+    <nav class="col-md-2 sidebar" style="background-color: #f6f6f6;">
+        <h4 style="font-size: 22px;">Категории</h4>
+        <ul class="nav flex-column">
+            {% tag_categories as categories %}
+            {% for category in categories %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "catalog:index" category.slug %}">{{category.name}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <h4 style="font-size: 22px;">Произодители</h4>
+        <ul class="nav flex-column">
+            {% tag_growers as growers %}
+            {% for grower in growers %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{grower.name}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <h2>Основное содержимое</h2>
+    <p>Здесь будет основное содержимое вашего сайта.</p>
+    <p>{{content}}</p>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-3 mb-4"> <!-- 4 карточки в строке -->
+                <div class="card">
+                    <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">Цена: {{ product.price }} ₽</p>
+                        <p class="card-text">Категория: {{ product.category }}</p>
+                        <p class="card-text">Производитель: {{ product.grower }}</p>
+                        <a href="#" class="btn btn-primary">Купить</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

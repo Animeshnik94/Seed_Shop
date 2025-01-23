@@ -1,0 +1,173 @@
+[
+    {
+        "model": "goods.product",
+        "pk": 1,
+        "fields": {
+            "name": "Gorilla Cookies Auto fem",
+            "slug": "gorilla-cookies-auto-fem",
+            "description": "Сорт конопли Gorilla Cookies Auto содержит 28,5% ТГК и способен принести до 600 грамм шишек с квадрата. Это делает его одним из мощнейших и наиболее щедрых автоцветов на планете. Эффект представляет собой взрыв смешливости и хорошего настроения, который сменяется мощным физическим релаксом.",
+            "image": "goods_images/Gorilla_Cookies_Auto_fem.png",
+            "price": "1628.00",
+            "discount": "5.00",
+            "quantity": 2453,
+            "flowering_time": 70,
+            "sativa_share": 45,
+            "indica_share": 55,
+            "thc": 28,
+            "category": 1,
+            "grower": 1
+        }
+    },
+    {
+        "model": "goods.product",
+        "pk": 2,
+        "fields": {
+            "name": "Amnesia Zkittlez Auto fem",
+            "slug": "amnesia-zkittlez-auto-fem",
+            "description": "Сорт конопли Mimosa x Orange Punch – новоиспеченный представить коллекции Cali от сидбанка Barney’s Farm. Он отличается обильными показателями урожайности, неприхотливостью в уходе, насыщенными и освежающими цитрусовыми вкусоароматическими качествами, а также мощным эйфорическим эффектом воздействия",
+            "image": "goods_images/Amnesia_Zkittlez_Auto_fem.png",
+            "price": "1627.00",
+            "discount": "0.00",
+            "quantity": 308,
+            "flowering_time": 70,
+            "sativa_share": 75,
+            "indica_share": 25,
+            "thc": 24,
+            "category": 8,
+            "grower": 1
+        }
+    },
+    {
+        "model": "goods.product",
+        "pk": 3,
+        "fields": {
+            "name": "Rock Machine auto fem",
+            "slug": "rock-machine-auto-fem",
+            "description": "Сорт каннабиса Rock Machine – мощная, урожайная индика. Этот автик вырастает выше метра, производит кучу ветвей и формирует на них большие, смолистые и твердые, как камень шишки. Качество урожая – вышка! Рок Машина в разы круче самого убойного стаффа.",
+            "image": "goods_images/Rock_Machine_auto_fem.png",
+            "price": "1112.00",
+            "discount": "10.00",
+            "quantity": 9,
+            "flowering_time": 80,
+            "sativa_share": 30,
+            "indica_share": 70,
+            "thc": 20,
+            "category": 7,
+            "grower": 2
+        }
+    },
+    {
+        "model": "goods.product",
+        "pk": 4,
+        "fields": {
+            "name": "Super Lemon Haze fem",
+            "slug": "super-lemon-haze-fem",
+            "description": "Сорт Super Lemon Haze выделяется генетикой, которая наделила культуру производительностью в индоре и аутдоре. Помимо этого у штамма насыщенный цитрусовый аромат с лимонными нотками. Лекарственное применение Супер Лемон Хейз позволяет использовать гибрид от бессонницы, стресса и депрессий.",
+            "image": "goods_images/Super_Lemon_Haze_fem.png",
+            "price": "1317.00",
+            "discount": "7.00",
+            "quantity": 477,
+            "flowering_time": 70,
+            "sativa_share": 70,
+            "indica_share": 30,
+            "thc": 26,
+            "category": 11,
+            "grower": 3
+        }
+    },
+    {
+        "model": "goods.product",
+        "pk": 5,
+        "fields": {
+            "name": "Arjan's Haze #3 fem",
+            "slug": "arjans-haze-3-fem",
+            "description": "Сорт Arjan's Haze #3 является выделяющимся гостем в Хейзовом семействе. Гибрид на равне с привычными производительностью, смолянистостью и ароматом, демонстрирует оригинальный эффект. Он способен раскрепостить самого зажатого социофоба, подарить ощущение эйфории и зарядить творческой искрой.",
+            "image": "goods_images/Arjans_Haze_3_fem.png",
+            "price": "878.00",
+            "discount": "0.00",
+            "quantity": 1,
+            "flowering_time": 70,
+            "sativa_share": 70,
+            "indica_share": 30,
+            "thc": 20,
+            "category": 11,
+            "grower": 3
+        }
+    },
+    {
+        "model": "goods.product",
+        "pk": 6,
+        "fields": {
+            "name": "White Widow Auto fem",
+            "slug": "white-widow-auto-fem",
+            "description": "Семена каннабиса White Widow Auto порадуют коноплеводов автоцветущей вариацией классической Белой Вдовы. Растиха сохранила в себе черты оригинального штамма и приобрела жизненный цикл длинной в 9 недель. Помимо этого, компактный рост сделал гибрид удобным для партизанского гровинга.",
+            "image": "goods_images/White_Widow_Auto_fem.png",
+            "price": "895.00",
+            "discount": "15.00",
+            "quantity": 148,
+            "flowering_time": 63,
+            "sativa_share": 60,
+            "indica_share": 40,
+            "thc": 16,
+            "category": 8,
+            "grower": 3
+        }
+    },
+    {
+        "model": "goods.product",
+        "pk": 7,
+        "fields": {
+            "name": "Zkittlez Auto fem",
+            "slug": "zkittlez-auto-fem",
+            "description": "Сорт конопли Zkittlez Auto – индика-доминантный автик с 24-28% ТГК. Отцветает за 70-77 дней, в индоре урожай составляет 600 г шишек с 1 м², в ауте с растения срезают до 700 г. Автоцвет отличается сладким вкусом/ароматом леденцов и мощным расслабляющим действием. Только для вечера!",
+            "image": "goods_images/Zkittlez_Auto_fem.png",
+            "price": "1333.00",
+            "discount": "0.00",
+            "quantity": 1142,
+            "flowering_time": 77,
+            "sativa_share": 20,
+            "indica_share": 80,
+            "thc": 26,
+            "category": 10,
+            "grower": 4
+        }
+    },
+    {
+        "model": "goods.product",
+        "pk": 8,
+        "fields": {
+            "name": "Grandmommy Purple fem",
+            "slug": "grandmommy-purple-fem",
+            "description": "Индика-доминантному сорту конопли Grandmommy Purple fem под силу вмиг освободить от всего, что тяготит, и пусть, как говорится, весь мир подождет. Эти великолепные соцветия, заряженные силой 31% ТГК, сродни тяжелой артиллерии в борьбе с перенапряжением, бессонницей, тревожностью, болью.",
+            "image": "goods_images/Grandmommy_Purple_fem.png",
+            "price": "1580.00",
+            "discount": "10.00",
+            "quantity": 432,
+            "flowering_time": 65,
+            "sativa_share": 20,
+            "indica_share": 80,
+            "thc": 31,
+            "category": 2,
+            "grower": 5
+        }
+    },
+    {
+        "model": "goods.product",
+        "pk": 9,
+        "fields": {
+            "name": "Bruce Banner Auto fem",
+            "slug": "bruce-banner-auto-fem",
+            "description": "Сорт конопли Bruce Banner Auto стоит попробовать всем, кто желает по-новому взглянуть на лучшие черты Куша и Дизеля в автоцветущей версии. Высокая урожайность, короткий жизненный цикл, убойный эффект и беспроблемный гров ожидают каждого, кто выберет этот автоцвет от сидбанка Monster Genetics.",
+            "image": "goods_images/Bruce_Banner_Auto_fem.png",
+            "price": "1260.00",
+            "discount": "0.00",
+            "quantity": 2656,
+            "flowering_time": 2652,
+            "sativa_share": 60,
+            "indica_share": 40,
+            "thc": 25,
+            "category": 4,
+            "grower": 6
+        }
+    }
+]

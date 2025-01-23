@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Виртуальные окружения
+venv/
+env/
+.venv/
+env.bak/
+venv.bak/
+
+# Файлы конфигурации IDE
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.vscode/
+
+# Логи
+*.log
+
+# Файлы базы данных
+*.sqlite3
+
+# Статические файлы
+#/static/
+#media/
+
+# Файлы настроек
+*.env
+*.local
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Папки для тестов
+test/
+tests/

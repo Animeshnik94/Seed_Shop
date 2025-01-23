@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+{% load static %}
+{% load goods_tags %}
+
+{% block sidebar %}
+    <nav class="col-md-2 sidebar" style="background-color: #f6f6f6;">
+        <h4 style="font-size: 22px;">Категории</h4>
+        <ul class="nav flex-column">
+            {% tag_categories as categories %}
+            {% for category in categories %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "catalog:index" category.slug %}">{{category}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <h4 style="font-size: 22px;">Произодители</h4>
+        <ul class="nav flex-column">
+            {% tag_growers as growers %}
+            {% for grower in growers %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{grower}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <!-- Блок с фильрацией -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded mb-4" aria-label="Eleventh navbar example">
+        <div class="container-fluid">
+          <h5 class="navbar-brand">Сортировать:</h5>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarsExample09">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="filterDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Фильтры
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="filterDropdown" style="width: 250px;">
+                        <li>
+                            <form action="{% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "catalog:index" slug_url %} {% endif %}" method="GET" class="px-3 py-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="on_sale" id="onSaleCheckbox" value="on" {% if request.GET.on_sale == 'on' %} checked {% endif %}>
+                                    {% if request.GET.q %} 
+                                        <input type="hidden" name="q" value="{{request.GET.q}}">
+                                    {%endif%}
+                                    <label class="form-check-label" for="onSaleCheckbox">Товары со скидкой</label>
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Сортировать по:</label>
+                                    <div>
+                                        <input class="form-check-input" type="radio" name="order_by" id="priceAsc" value="default" {% if not request.GET.order_by or request.GET.order_by == 'default' %} checked {% endif %}>
+                                        <label class="form-check-label" for="priceAsc">По умолчанию</label>
+                                    </div>
+                                    <div>
+                                        <input class="form-check-input" type="radio" name="order_by" id="priceAsc" value="price" {% if request.GET.order_by == 'price' %} checked {% endif %}>
+                                        <label class="form-check-label" for="priceAsc">Цена по возрастанию</label>
+                                    </div>
+                                    <div>
+                                        <input class="form-check-input" type="radio" name="order_by" id="priceDesc" value="-price" {% if request.GET.order_by == '-price' %} checked {% endif %}>
+                                        <label class="form-check-label" for="priceDesc">Цена по убыванию</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-sm">Применить</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex" method="GET" action="{% url "catalog:search" %}" role="search">
+                <input class="form-control me-2" type="search" name="q" placeholder="Поиск по товарам" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Поиск</button>
+            </form>
+          </div>
+        </div>
+    </nav>
+
+    <!-- Блок с карточками продуктов -->
+    <div class="row">
+        {% if request.GET.q %}
+            <h1 class="fs-3 fw-bolder">Результаты поиска по запросу {{request.GET.q}}</h3>
+        {% if not goods %}
+            <h2 class="mt-4">По запросу ничего не найдено</h2>
+        {% endif %}
+        {% endif %}
+
+        {% for product in goods %}
+            <div class="col-md-3 mb-4"> <!-- 4 карточки в строке -->
+                <div class="card" style="height: 470px;"> <!-- Задаем фиксированную высоту карточки -->
+                    <a href="{% url "catalog:product" product.slug %}">
+                        {% if product.image %}
+                            <img src="{{product.image.url}}" class="card-img-top" alt="{{product.name}}" style="height: 200px; object-fit: cover;"> 
+                        {% else %}
+                            <img src="{% static "deps/images/not_found.jpg" %}" class="card-img-top" alt="page not found" style="height: 200px; object-fit: cover;"> 
+                        {% endif %}
+                        {% if product.discount > 0 %}
+                            <div class="discount-badge position-absolute" style="top: 10px; right: 10px; background-color: black; color: white; padding: 5px; border-radius: 5px;">
+                                -{{ product.discount }}% <!-- Предполагается, что 'discount' — это атрибут вашего продукта -->
+                            </div>
+                        {% endif %}
+                    </a>
+                    <div class="card-body d-flex flex-column">
+                        <!-- НАЗВАНИЕ ТОВАРА -->
+                        <h5 class="card-title">
+                            <a href="{% url "catalog:product" product.slug %}">
+                                {% autoescape off %}
+                                    {% if product.headline %}
+                                    {{product.headline}}
+                                    {% else %}
+                                    {{ product.name}}
+                                    {% endif %}
+                                {% endautoescape %}
+                            </a>
+                        </h5>
+                        <!-- СТОИМОСТЬ ТОВАРА -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex flex-column">
+                                {% if product.discount %}
+                                    <p class="card-text mb-0" style="text-decoration: line-through; color: #8b8b8b;">{{ product.price }}₽</p>
+                                    <p class="card-text" style="margin-top: -5px;"><strong>{{ product.sell_price }}₽</strong></p>
+                                {% else %}
+                                    <p class="card-text"><strong>{{ product.price }}₽</strong></p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- ПРОИЗВОДИТЕЛЬ -->
+                        <div class="d-flex align-content-center" style="margin-top: 5px;"> 
+                            <span style="display: inline-block; margin-right: 5px;">
+                                <img src="{% static 'deps/icons/R.svg' %}" alt="иконка" style="width: 16px; height: 16px;">
+                            </span>
+                            <h3 class="mb-0"> 
+                                <a href="#" style="text-decoration: none; color: inherit;">{{ product.grower }}</a>
+                            </h3> 
+                        </div>
+                        <!-- КАТЕГОРИЯ -->
+                        <div class="d-flex align-content-center" style="margin-top: 5px;"> 
+                            <span style="display: inline-block; margin-right: 5px;">
+                                <img src="{{product.category.image.url}}" alt="иконка" style="width: 20px; height: 20px;">
+                            </span>
+                            <h3 class="mb-0"> 
+                                <a href="{% url "catalog:index" product.category.slug %}" style="text-decoration: none; color: inherit;">{{ product.category.name }}</a>
+                            </h3> 
+                        </div>
+                        <!-- УРОВЕНЬ ТГК -->
+                        <div class="d-flex align-content-center"> 
+                            <span style="display: inline-block; margin-right: 5px;">
+                                <img src="{% static 'deps/icons/thc.svg' %}" alt="иконка" style="width: 20px; height: 20px;">
+                            </span>
+                            <h3 class="mb-0">ТГК {{ product.thc }}%</h3> 
+                        </div>
+                        <!-- ДОЛЯ САТИВА/ИНДИКА -->
+                        <div class="d-flex align-content-center"> <!-- Контейнер для иконки и доли сорта -->
+                            <span style="display: inline-block; margin-right: 5px;">
+                                <img src="{% static 'deps/icons/marijuana.svg' %}" alt="сатива" style="width: 20px; height: 20px;">
+                            </span>
+                            <h3 class="mb-0">{{product.sativa_share}}% Сатива </h3> 
+                            <h3 class="mb-0">{{product.indica_share}}% Индика</h3> 
+                        </div>
+                        <!-- ВРЕМЯ ДО СБОРА УРОЖАЯ -->
+                        <div class="d-flex align-content-center"> <!-- Контейнер для иконки и доли сорта -->
+                            <span style="display: inline-block; margin-right: 5px;">
+                                <img src="{% static 'deps/icons/clock.svg' %}" alt="Время" style="width: 20px; height: 20px;">
+                            </span>
+                            <h3 class="mb-0">{{product.flowering_time}} дней </h3> 
+     
+                        </div>
+                        <!-- ID ПРОДУКТА -->
+                        <p style="color: rgb(140, 140, 140);">id: {{ product.display_id }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% if goods.has_other_pages %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if goods.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% change_params page=goods.previous_page_number %}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% for num in goods.paginator.page_range %}
+                    {% if goods.number == num %}
+                        <li class="page-item active" aria-current="page">
+                            <span class="page-link">{{ num }}</span>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{% change_params page=num %}">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% if goods.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% change_params page=goods.next_page_number %}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+{% endblock %}
