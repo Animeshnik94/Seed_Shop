@@ -33,23 +33,31 @@
 {% endblock %}
 
 {% block content %}
-    <h2>Основное содержимое</h2>
-    <p>Здесь будет основное содержимое вашего сайта.</p>
-    <p>{{content}}</p>
-    <div class="row">
-        {% for product in products %}
-            <div class="col-md-3 mb-4"> <!-- 4 карточки в строке -->
-                <div class="card">
-                    <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">Цена: {{ product.price }} ₽</p>
-                        <p class="card-text">Категория: {{ product.category }}</p>
-                        <p class="card-text">Производитель: {{ product.grower }}</p>
-                        <a href="#" class="btn btn-primary">Купить</a>
-                    </div>
+    <h1 class="fs-2 fw-bolder" style="text-align: center; margin-top: 20px;">Авторизация</h3>
+    <div class="d-flex justify-content-center">
+        <div class="border p-3" style="background-color: #f8f9fa; width: 400px; margin: 20px 0;">
+            <h3 class="fw-bold">Вход на сайт</h3>
+            <form>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Имя пользователя:</label>
+                    <input type="text" class="form-control" id="username" placeholder="Введите имя пользователя" required>
                 </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Пароль:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Введите пароль" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Войти</button>
+            </form>
+    
+            <div class="mt-3">
+                <p>Или войдите через:</p>
+                <button type="button" class="btn btn-outline-danger me-2">Google</button>
+                <button type="button" class="btn btn-outline-dark">GitHub</button>
             </div>
-        {% endfor %}
+            
+            <div class="mt-3">
+                <p>Нет аккаунта? <a href="{% url "user:registration" %}">Создайте его</a>.</p>
+            </div>
+        </div>
     </div>
-{% endblock %}
+{% endblock %}      

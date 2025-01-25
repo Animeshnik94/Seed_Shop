@@ -1,0 +1,83 @@
+[
+    {
+        "model": "goods.category",
+        "pk": 1,
+        "fields": {
+            "name": "Автоцветущие",
+            "slug": "avtocvetushie",
+            "image": "categories_images/auto_5olqnCV.png"
+        }
+    },
+    {
+        "model": "goods.category",
+        "pk": 2,
+        "fields": {
+            "name": "Мощные",
+            "slug": "moshnye",
+            "image": "categories_images/power_Dvr5pch.png"
+        }
+    },
+    {
+        "model": "goods.category",
+        "pk": 3,
+        "fields": {
+            "name": "Урожайные",
+            "slug": "urozhajnye",
+            "image": "categories_images/big_urozhai_0LYo8pL.png"
+        }
+    },
+    {
+        "model": "goods.category",
+        "pk": 4,
+        "fields": {
+            "name": "Недорогие",
+            "slug": "nedorogie",
+            "image": "categories_images/cheap_KTy2y2G.png"
+        }
+    },
+    {
+        "model": "goods.category",
+        "pk": 5,
+        "fields": {
+            "name": "Семена Афганки",
+            "slug": "semena-afganki",
+            "image": "categories_images/afganka_BvuqiWa.png"
+        }
+    },
+    {
+        "model": "goods.category",
+        "pk": 6,
+        "fields": {
+            "name": "Невысокие",
+            "slug": "nevysokie",
+            "image": "categories_images/gnome_ZyKAIRz.png"
+        }
+    },
+    {
+        "model": "goods.category",
+        "pk": 7,
+        "fields": {
+            "name": "Для дома",
+            "slug": "dlya-doma",
+            "image": "categories_images/for_home_94uBkqf.png"
+        }
+    },
+    {
+        "model": "goods.category",
+        "pk": 8,
+        "fields": {
+            "name": "Хиты продаж",
+            "slug": "hity-prodazh",
+            "image": "categories_images/bestseller_ukxFqdF.png"
+        }
+    },
+    {
+        "model": "goods.category",
+        "pk": 9,
+        "fields": {
+            "name": "Семена из Голландии",
+            "slug": "semena-iz-gollandii",
+            "image": "categories_images/holland_eIDfq1J.png"
+        }
+    }
+]

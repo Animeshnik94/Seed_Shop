@@ -27,7 +27,6 @@ class Grower(models.Model):
     def __str__(self):
         return self.name
 
-
 class Product(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name='Название продукта')
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name='URL')

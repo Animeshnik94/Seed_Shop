@@ -8,7 +8,11 @@
 <div class="row">
     <!-- Колонка с картинкой товара -->
     <div class="col-md-3">
-        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid rounded">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid rounded">
+        {% else %}
+            <img src="{% static "deps/images/not_found.jpg" %}" alt="{{ product.name }}" class="img-fluid rounded">
+        {% endif %}
     </div>
 
     <!-- Колонка с описанием товара -->

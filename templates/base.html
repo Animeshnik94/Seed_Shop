@@ -27,13 +27,13 @@
             <li><a href="{% url "main:index" %}" class="nav-link px-2 link-secondary">Главная</a></li>
             <li><a href="{% url "catalog:index" 'all' %}" class="nav-link px-2">Каталог</a></li>
             <li><a href="#" class="nav-link px-2">Корзина</a></li>
-            <li><a href="#" class="nav-link px-2">FAQs</a></li>
+            <li><a href="{% url "user:profile" %}" class="nav-link px-2">Кабинет</a></li>
             <li><a href="{% url "main:about_us" %}" class="nav-link px-2">О нас</a></li>
           </ul>
     
           <div class="col-md-3 text-end">
-            <button type="button" class="btn btn-outline-primary me-2">Login</button>
-            <button type="button" class="btn btn-primary">Sign-up</button>
+            <a href="{% url "user:login" %}" class="btn btn-outline-primary me-2">Login</a>
+            <a href="{% url "user:registration" %}" class="btn btn-primary">Sign-up</a>
           </div>
         </header>
     </div>

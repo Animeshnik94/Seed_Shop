@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # my apps 
     'main',
     'goods',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -154,3 +155,6 @@ INTERNAL_IPS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Переопределенные модели Django
+AUTH_USER_MODEL = 'users.User'
