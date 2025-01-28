@@ -158,3 +158,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Переопределенные модели Django
 AUTH_USER_MODEL = 'users.User'
+
+#Путь к страницы для авторизации
+LOGIN_URL = '/user/login/' 

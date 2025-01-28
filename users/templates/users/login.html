@@ -39,7 +39,9 @@
             <h3 class="fw-bold">Вход на сайт</h3>
             <form action="{% url "user:login" %}" method="POST">
                 {% csrf_token %}
-                
+                {% if request.GET.next %}
+                    <input type="hidden" name="next" value={{request.GET.next}}>
+                {% endif %}
                 <div class="mb-3">
                     <label for="id_username" class="form-label">{{form.username.label}}</label>
                     <input type="text" class="form-control" 
