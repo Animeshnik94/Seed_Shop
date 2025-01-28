@@ -34,7 +34,7 @@
 
 {% block content %}
     <h2>Основное содержимое</h2>
-    <p>Здесь будет основное содержимое вашего сайта.</p>
+    {% if user.is_authenticated %}<p>пользователь авторизован</p>{% else %}<p>Пользователь не авторизован</p>{% endif %}
     <p>{{content}}</p>
     <div class="row">
         {% for product in products %}
