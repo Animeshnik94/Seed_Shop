@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
-{% load goods_tags %}
 
+{% block sidebar %}{% endblock %}
 
 
 {% block content %}
-<div class="row">
+    <div class="row">
     <!-- Колонка с картинкой товара -->
     <div class="col-md-3">
         {% if product.image %}

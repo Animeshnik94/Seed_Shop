@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="container mt-5 bg-white p-4 mx-2 rounded custom-shadow" style="border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <div class="row justify-content-center">
+                <div class=" bg-white p-4 mb-4 mx-2 rounded custom-shadow">
+                    <h3 class="text-center mb-4 fs-5 fw-bolder">Корзина</h3>
+                    <div class="container" id="cart-items-container">
+                        <!-- Разметка корзины -->
+                        {% include "carts/includes/included_cart.html" %}
+                        <!-- Закончилась разметка корзины -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,4 +1,5 @@
 {% load static %}
+{% load goods_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +27,7 @@
           <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li><a href="{% url "main:index" %}" class="nav-link px-2 link-secondary">Главная</a></li>
             <li><a href="{% url "catalog:index" 'all' %}" class="nav-link px-2">Каталог</a></li>
-            <li><a href="#" class="nav-link px-2">Корзина</a></li>
+            <li><a href="{% url "user:users_cart" %}" class="nav-link px-2">Корзина</a></li>
             <li><a href="{% url "main:about_us" %}" class="nav-link px-2">О нас</a></li>
           </ul>
     
@@ -41,7 +42,7 @@
                         Мой профиль
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="carts/cart.html">Корзина</a></li>
+                        <li><a class="dropdown-item" href="{% url 'user:users_cart' %}">Корзина</a></li>
                         <li><a class="dropdown-item" href="{% url 'user:profile' %}">Личный кабинет</a></li>
                         {% if user.is_admin or user.is_staff %}
                             <li><a class="dropdown-item" href="{% url 'admin:index' %}">Админ панель</a></li>
@@ -58,8 +59,38 @@
         <div class="row">
             <!-- Сайдбар -->
             {% block sidebar %}
-                <h1>Hello, my friend</h1>
-                <!-- Тут будет размещен сайд бар  -->
+                <nav class="col-md-2 sidebar" style="background-color: #f6f6f6;">
+                    <!-- Разметка корзины -->
+                       {% include "includes/cart_button.html" %}
+                    <!-- Конец разметки -->
+
+                    <!--Список категорий-->
+                    <h4 style="font-size: 22px;">Категории</h4>
+                    <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#categoryList" aria-expanded="false" aria-controls="categoryList">
+                        Показать категории
+                    </button>
+                    <ul class="nav flex-column collapse d-md-block" id="categoryList">
+                        {% tag_categories as categories %}
+                        {% for category in categories %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'catalog:index' category.slug %}">{{ category }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <!--Список производителей-->
+                    <h4 style="font-size: 22px;">Производители</h4>
+                    <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#growerList" aria-expanded="false" aria-controls="growerList">
+                        Показать производителей
+                    </button>
+                    <ul class="nav flex-column collapse d-md-block" id="growerList">
+                        {% tag_growers as growers %}
+                        {% for grower in growers %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">{{ grower }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
             {% endblock %}
             
             <!-- Основное содержимое -->
