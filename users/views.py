@@ -17,7 +17,8 @@ def login(request) -> HttpResponse:
                 auth.login(request, user)
                 messages.success(request, f"{username}, Вы вошли в аккаунт")
 
-                if request.POST.get('next', None): #Если неавторизованый пользователь решит перейти сразу в профиль, его перекинет на 
+                redirect_page = request.POST.get('next', None)
+                if redirect_page and redirect_page != reverse('user:logout'): #Если неавторизованый пользователь решит перейти сразу в профиль, его перекинет на
                     return HttpResponseRedirect(request.POST.get('next')) # страницу авторизации, после авторизации на его страницу
 
                 return HttpResponseRedirect(reverse('main:index'))
