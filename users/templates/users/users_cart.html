@@ -1,7 +1,42 @@
 {% extends "base.html" %}
 {% load static %}
+{% load goods_tags %}
+{% load carts_tags %}
+
+{% block sidebar %}
+    <nav class="col-md-2 sidebar" style="background-color: #f6f6f6;">
+
+        <!--Список категорий-->
+        <h4 style="font-size: 22px;">Категории</h4>
+        <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#categoryList" aria-expanded="false" aria-controls="categoryList">
+            Показать категории
+        </button>
+        <ul class="nav flex-column collapse d-md-block" id="categoryList">
+            {% tag_categories as categories %}
+            {% for category in categories %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'catalog:index' category.slug %}">{{ category }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <!--Список производителей-->
+        <h4 style="font-size: 22px;">Производители</h4>
+        <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#growerList" aria-expanded="false" aria-controls="growerList">
+            Показать производителей
+        </button>
+        <ul class="nav flex-column collapse d-md-block" id="growerList">
+            {% tag_growers as growers %}
+            {% for grower in growers %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{ grower }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endblock %}
 
 {% block content %}
+    {% user_carts request as carts %}
     <div class="row">
         <div class="container mt-5 bg-white p-4 mx-2 rounded custom-shadow" style="border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <div class="row justify-content-center">

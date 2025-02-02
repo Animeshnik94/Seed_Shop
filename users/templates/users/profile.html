@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load goods_tags %}
+{% load carts_tags %}
 
 {% block sidebar %}
     {{ block.super }}
@@ -83,6 +84,7 @@
     </div>  
 
     <!-- Карточка с корзиной -->
+    {% user_carts request as carts %}
     <div class="col-md-6">
         <div class=" bg-white p-4 mb-4 mx-2 rounded custom-shadow" style="border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <h3 class="text-center mb-4 fs-5 fw-bolder">Корзина</h3>

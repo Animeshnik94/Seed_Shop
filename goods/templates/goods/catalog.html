@@ -70,7 +70,7 @@
 
         {% for product in goods %}
             <div class="col-md-3 mb-4"> <!-- 4 карточки в строке -->
-                <div class="card" style="height: 470px;"> <!-- Задаем фиксированную высоту карточки -->
+                <div class="card" style="height: 480px;"> <!-- Задаем фиксированную высоту карточки -->
                     <a href="{% url "catalog:product" product.slug %}">
                         {% if product.image %}
                             <img src="{{product.image.url}}" class="card-img-top" alt="{{product.name}}" style="height: 200px; object-fit: cover;"> 
@@ -148,8 +148,14 @@
                             <h3 class="mb-0">{{product.flowering_time}} дней </h3> 
      
                         </div>
-                        <!-- ID ПРОДУКТА -->
-                        <p style="color: rgb(140, 140, 140);">id: {{ product.display_id }}</p>
+                        <!-- ID товара и кнопка корзины -->
+                        <div class="d-flex align-items-center justify-content-between mt-auto"> <!-- Контейнер для id и корзины -->
+                            <p style="color: rgb(140, 140, 140); margin: 0;">id: {{ product.display_id }}</p>
+                            <a href="{% url "cart:cart_add" product.slug %}" class="btn add-to-cart">
+                                <img src="{% static "deps/icons/basket_black.svg" %}"
+                                alt="Catalog Icon" width="30" height="30">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
