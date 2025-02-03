@@ -72,7 +72,7 @@
                     <input type="text" class="form-control" id="price" value="{{ product.price }} руб." readonly>
                 </div>
                 <p style="color: rgb(140, 140, 140);">Доступно - {{product.quantity}}</p>
-                <a href="{% url "cart:cart_add" product.slug %}" type="submit" class="btn btn-primary">В корзину</a>
+                <a href="{% url "cart:cart_add" product.slug %}" type="submit" class="btn btn-primary add-to-cart">В корзину</a>
             </form>
         </div>
     </div>
