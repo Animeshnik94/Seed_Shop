@@ -151,8 +151,9 @@
                         <!-- ID товара и кнопка корзины -->
                         <div class="d-flex align-items-center justify-content-between mt-auto"> <!-- Контейнер для id и корзины -->
                             <p style="color: rgb(140, 140, 140); margin: 0;">id: {{ product.display_id }}</p>
-                            <a href="{% url "cart:cart_add" product.slug %}" class="btn add-to-cart"
-                            >
+                            <a href="{% url "cart:cart_add" %}" class="btn add-to-cart"
+                            data-product-id="{{ product.id }}">
+                                {% csrf_token %}
                                 <img src="{% static "deps/icons/basket_black.svg" %}"
                                 alt="Catalog Icon" width="30" height="30">
                             </a>
