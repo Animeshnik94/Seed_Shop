@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import auth, messages
 from django.urls import reverse
 
+from carts.models import Cart
 from users.forms import UserLoginForm, UserRegistrationForm, ProfileForm
 
 def login(request) -> HttpResponse:
@@ -13,9 +14,15 @@ def login(request) -> HttpResponse:
             username = request.POST['username']
             password = request.POST['password']
             user = auth.authenticate(username=username, password=password)
+
+            session_key = request.session.session_key
+
             if user:
                 auth.login(request, user)
                 messages.success(request, f"{username}, Вы вошли в аккаунт")
+
+                if session_key: # update добавляет в БД корзины после логина
+                    Cart.objects.filter(session_key=session_key).update(user=user)
 
                 redirect_page = request.POST.get('next', None)
                 if redirect_page and redirect_page != reverse('user:logout'): #Если неавторизованый пользователь решит перейти сразу в профиль, его перекинет на
@@ -36,8 +43,15 @@ def registration(request) -> HttpResponse:
         form = UserRegistrationForm(data=request.POST)
         if form.is_valid():
             form.save()
+
+            session_key = request.session.session_key
+
             user = form.instance
             auth.login(request, user)
+
+            if session_key:  # update добавляет в БД корзины после логина
+                Cart.objects.filter(session_key=session_key).update(user=user)
+
             messages.success(request, f"{user.username}, Вы успешно зарегестрированы и вошли в аккаунт")
             return HttpResponseRedirect(reverse('main:index'))
     else:
@@ -66,7 +80,10 @@ def profile(request) -> HttpResponse:
     return render(request, 'users/profile.html', context=context)
 
 def users_cart(request):
-    return render(request, 'users/users_cart.html')
+    context = {
+        'title': f'Корзина {request.user.username}',
+    }
+    return render(request, 'users/users_cart.html', context=context)
 @login_required
 def logout(request):
     messages.success(request, f"{request.user.username}, Вы вышли из аккаунта")
