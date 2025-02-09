@@ -1,9 +1,11 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import Prefetch
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import auth, messages
 from django.urls import reverse
 
+from orders.models import Order, OrderItem
 from carts.models import Cart
 from users.forms import UserLoginForm, UserRegistrationForm, ProfileForm
 
@@ -73,9 +75,19 @@ def profile(request) -> HttpResponse:
             return HttpResponseRedirect(reverse('user:profile'))
     else:
         form = ProfileForm(instance=request.user)
+
+    orders = (Order.objects.filter(user=request.user).prefetch_related(
+        Prefetch(
+            "orderitem_set",
+            queryset=OrderItem.objects.select_related("product"),
+        )
+    ).order_by("-id")
+    )
+
     context = {
         'title': 'Seed Shop - Кабинет',
         'form': form,
+        'orders': orders,
     }
     return render(request, 'users/profile.html', context=context)
 
