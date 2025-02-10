@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block sidebar %}{% endblock %}
+{% block sidebar %}
+    {{ block.super }}
+{% endblock %}
+
 
 
 {% block content %}
-    <div class="row">
+    <div class="row ps-5 pe-5">
     <!-- Колонка с картинкой товара -->
     <div class="col-md-3">
         {% if product.image %}
@@ -13,49 +16,49 @@
         {% else %}
             <img src="{% static "deps/images/not_found.jpg" %}" alt="{{ product.name }}" class="img-fluid rounded">
         {% endif %}
-    </div>
-
-    <!-- Колонка с описанием товара -->
-    <div class="col-md-5">
-        <h1 class="fs-3 fw-bolder">{{ product.name }} ({{ product.grower }})</h1>
-        <p class="mt-3">{{ product.description }}</p>
         <div class="d-flex flex-column">
-            
             <!-- КАТЕГОРИЯ -->
-            <div class="d-flex mb-2 align-content-center" style="margin-top: 5px;"> 
+            <div class="d-flex mb-2 align-content-center" style="margin-top: 5px;">
                 <span style="display: inline-block; margin-right: 5px;">
                     <img src="{{product.category.image.url}}" alt="иконка" style="width: 20px; height: 20px;">
                 </span>
-                <h3 class="mb-0"> 
+                <h3 class="mb-0">
                     <a href="{% url "catalog:index" product.category.slug %}" style="text-decoration: none; color: inherit;">{{ product.category.name }}</a>
-                </h3> 
+                </h3>
             </div>
             <!-- УРОВЕНЬ ТГК -->
-            <div class="d-flex mb-2 align-content-center"> 
+            <div class="d-flex mb-2 align-content-center">
                 <span style="display: inline-block; margin-right: 5px;">
                     <img src="{% static 'deps/icons/thc.svg' %}" alt="иконка" style="width: 20px; height: 20px;">
                 </span>
-                <h3 class="mb-0">ТГК {{ product.thc }}%</h3> 
+                <h3 class="mb-0">ТГК {{ product.thc }}%</h3>
             </div>
             <!-- ДОЛЯ САТИВА/ИНДИКА -->
             <div class="d-flex mb-2 align-content-center"> <!-- Контейнер для иконки и доли сорта -->
                 <span style="display: inline-block; margin-right: 5px;">
                     <img src="{% static 'deps/icons/marijuana.svg' %}" alt="сатива" style="width: 20px; height: 20px;">
                 </span>
-                <h3 class="mb-0">{{product.sativa_share}}% Сатива </h3> 
-                <h3 class="mb-0">{{product.indica_share}}% Индика</h3> 
+                <h3 class="mb-0">{{product.sativa_share}}% Сатива </h3>
+                <h3 class="mb-0">{{product.indica_share}}% Индика</h3>
             </div>
             <!-- ВРЕМЯ ДО СБОРА УРОЖАЯ -->
             <div class="d-flex mb-2 align-content-center"> <!-- Контейнер для иконки и доли сорта -->
                 <span style="display: inline-block; margin-right: 5px;">
                     <img src="{% static 'deps/icons/clock.svg' %}" alt="Время" style="width: 20px; height: 20px;">
                 </span>
-                <h3 class="mb-0">{{product.flowering_time}} дней </h3> 
+                <h3 class="mb-0">{{product.flowering_time}} дней </h3>
 
             </div>
-            <!-- ID ПРОДУКТА -->
-            <p style="color: rgb(140, 140, 140);">id: {{ product.display_id }}</p>
+                <!-- ID ПРОДУКТА -->
+                <p style="color: rgb(140, 140, 140);">id: {{ product.display_id }}</p>
         </div>
+    </div>
+
+    <!-- Колонка с описанием товара -->
+    <div class="col-md-4">
+        <h1 class="fs-3 fw-bolder">{{ product.name }} ({{ product.grower }})</h1>
+        <p class="mt-3">{{ product.description }}</p>
+
     </div>
 
     <!-- Колонка с формой заказа -->
@@ -80,5 +83,8 @@
         </div>
     </div>
 </div>
+<a href="{{ previous_url }}" class="btn btn-primary ms-5 m-3">
+    Назад
+</a>
 
 {% endblock %}
