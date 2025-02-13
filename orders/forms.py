@@ -2,7 +2,7 @@ import re
 from django import forms
 
 
-
+# Тут используется форма не привязанная к модели
 class CreateOrderForm(forms.Form):
     first_name = forms.CharField()
     last_name = forms.CharField()

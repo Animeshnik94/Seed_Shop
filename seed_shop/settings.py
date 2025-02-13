@@ -93,7 +93,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'seed_shop',
-        'USER': 'admin',
+        'USER': 'db_admin',
         'PASSWORD': '1879',
         'HOST': 'localhost',
         'PORT': '5432',

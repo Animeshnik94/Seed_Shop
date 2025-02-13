@@ -3,6 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, User
 
 from users.models import User
 
+# Тут используются формы привязанные к модели
 class UserLoginForm(AuthenticationForm):
     class Meta:
         model = User
@@ -39,7 +40,7 @@ class ProfileForm(UserChangeForm):
             "username",
             "email",
         )
-    image = forms.CharField(required=False)
+    image = forms.ImageField(required=False)
     first_name = forms.CharField()
     last_name = forms.CharField()
     username = forms.CharField()
