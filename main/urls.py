@@ -6,6 +6,6 @@ app_name = 'main'
 #namespace = main
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('about_us/', views.about_us, name='about_us'),
+    path('', views.IndexView.as_view(), name='index'),
+    path('about_us/', views.AboutView.as_view(), name='about_us'),
 ]
