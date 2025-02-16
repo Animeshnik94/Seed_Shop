@@ -19,6 +19,7 @@ class CatalogView(ListView):
 
     def get_queryset(self):
         category_slug = self.kwargs.get('category_slug')
+        grower_slug = self.kwargs.get('grower_slug')
         on_sale = self.request.GET.get('on_sale')
         order_by = self.request.GET.get('order_by')
         query = self.request.GET.get('q')
@@ -34,6 +35,9 @@ class CatalogView(ListView):
             if not goods.exists():
                 raise Http404() # Обрабатываем случай когда querry-set со списком товаров пустой
 
+        if grower_slug:
+            goods = super().get_queryset().filter(grower__slug=grower_slug)
+
         if on_sale:
             goods = goods.filter(discount__gt=0)
 
@@ -45,7 +49,8 @@ class CatalogView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Seed Shop - Каталог'
-        context['slug_url'] = self.kwargs.get('category_slug')
+        context['category_slug'] = self.kwargs.get('category_slug')
+        context['grower_slug'] = self.kwargs.get('grower_slug')
         return context
 
 

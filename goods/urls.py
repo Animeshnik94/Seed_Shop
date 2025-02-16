@@ -8,7 +8,8 @@ app_name = 'goods'
 urlpatterns = [
     # View - catalog
     #path('', views.catalog, name='index'),
-    path('<slug:category_slug>/', views.CatalogView.as_view(), name='index'), # Я использовал разный name для избежания проблем с url адресацией
+    path('categories/<slug:category_slug>/<slug:grower_slug>/', views.CatalogView.as_view(), name='category_with_grower'),
+    path('categories/<slug:category_slug>/', views.CatalogView.as_view(), name='category'),
     path('search/', views.CatalogView.as_view(), name='search'),
     # path('grower/<slug:grower_slug>/', views.grower, name='grower'),
     # View - product

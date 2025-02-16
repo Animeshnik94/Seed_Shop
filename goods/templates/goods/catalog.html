@@ -22,7 +22,15 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="filterDropdown" style="width: 250px;">
                         <li>
-                            <form action="{% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "catalog:index" slug_url %} {% endif %}" method="GET" class="px-3 py-2">
+                            <form action="
+                                {% if request.GET.q %}
+                                    {% url 'catalog:search' %}
+                                {% elif grower_slug %}
+                                    {% url 'catalog:category_with_grower' category_slug grower_slug %}
+                                {% else %}
+                                    {% url 'catalog:category' category_slug %}
+                                {% endif %}"
+                                method="GET" class="px-3 py-2">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="on_sale" id="onSaleCheckbox" value="on" {% if request.GET.on_sale == 'on' %} checked {% endif %}>
                                     {% if request.GET.q %} 
@@ -113,7 +121,7 @@
                                 <img src="{% static 'deps/icons/R.svg' %}" alt="иконка" style="width: 16px; height: 16px;">
                             </span>
                             <h3 class="mb-0"> 
-                                <a href="#" style="text-decoration: none; color: inherit;">{{ product.grower }}</a>
+                                <a href="{% url "catalog:category_with_grower" 'all' product.grower.slug %}" style="text-decoration: none; color: inherit;">{{ product.grower }}</a>
                             </h3> 
                         </div>
                         <!-- КАТЕГОРИЯ -->
@@ -122,7 +130,7 @@
                                 <img src="{{product.category.image.url}}" alt="иконка" style="width: 20px; height: 20px;">
                             </span>
                             <h3 class="mb-0"> 
-                                <a href="{% url "catalog:index" product.category.slug %}" style="text-decoration: none; color: inherit;">{{ product.category.name }}</a>
+                                <a href="{% url "catalog:category" product.category.slug %}" style="text-decoration: none; color: inherit;">{{ product.category.name }}</a>
                             </h3> 
                         </div>
                         <!-- УРОВЕНЬ ТГК -->
