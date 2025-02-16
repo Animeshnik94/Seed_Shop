@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load cache %}
 {% load goods_tags %}
 {% load carts_tags %}
 
@@ -125,6 +126,9 @@
 </div>
 
 <!-- Оформленные заказы -->
+
+
+{#{% cache 60 user_orders user.id %}#}
 <div class="col-md-12">
     <div class=" bg-white p-4 mb-4 mx-2 rounded custom-shadow" style="border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
         <h3 class="text-center mb-4 fs-5 fw-bolder">Мои заказы</h3>
@@ -169,5 +173,7 @@
         <!-- Закончилась разметка заказов -->
     </div>
 </div>
+{#{% endcache %}#}
+
 <a href="{% url "user:logout" %}" class="btn btn-danger mb-2">Выйти</a>
 {% endblock %}     
