@@ -1,4 +1,5 @@
 {% load static %}
+{% load cache %}
 {% load goods_tags %}
 
 <!DOCTYPE html>
@@ -70,12 +71,14 @@
                         Показать категории
                     </button>
                     <ul class="nav flex-column collapse d-md-block" id="categoryList">
+                        {% cache 60 catalog_categories %}
                         {% tag_categories as categories %}
                         {% for category in categories %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'catalog:index' category.slug %}">{{ category }}</a>
                             </li>
                         {% endfor %}
+                        {% endcache %}
                     </ul>
                     <!--Список производителей-->
                     <h4 style="font-size: 22px;">Производители</h4>
@@ -83,12 +86,14 @@
                         Показать производителей
                     </button>
                     <ul class="nav flex-column collapse d-md-block" id="growerList">
+                        {% cache 60 growers %}
                         {% tag_growers as growers %}
                         {% for grower in growers %}
                             <li class="nav-item">
                                 <a class="nav-link" href="#">{{ grower }}</a>
                             </li>
                         {% endfor %}
+                        {% endcache %}
                     </ul>
                 </nav>
             {% endblock %}

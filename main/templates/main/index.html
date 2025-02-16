@@ -7,23 +7,7 @@
 {% endblock %}
 
 {% block content %}
-    <h2>Основное содержимое</h2>
-    {% if user.is_authenticated %}<p>пользователь авторизован</p>{% else %}<p>Пользователь не авторизован</p>{% endif %}
-    <p>{{content}}</p>
-    <div class="row">
-        {% for product in products %}
-            <div class="col-md-3 mb-4"> <!-- 4 карточки в строке -->
-                <div class="card">
-                    <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">Цена: {{ product.price }} ₽</p>
-                        <p class="card-text">Категория: {{ product.category }}</p>
-                        <p class="card-text">Производитель: {{ product.grower }}</p>
-                        <a href="#" class="btn btn-primary">Купить</a>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+    <h2 class="fs-2 mb-5">Тут пока нет контента :(</h2>
+    <img src="{% static "deps/images/sad_girl.gif" %}" alt="sad:(">
+    <p class="fs-5 mt-5">{% if user.is_authenticated %}Тебя зовут - {{ user.username }} {% else %} Ты не авторизован {% endif %} </p>
 {% endblock %}

@@ -1,3 +1,6 @@
+#Папка с кэшэм
+cache/
+
 # Python
 __pycache__/
 *.py[cod]
