@@ -18,7 +18,7 @@
         {% endif %}
         <div class="d-flex flex-column">
             <!-- ПРОИЗВОДИТЕЛЬ -->
-            <div class="d-flex align-content-center" style="margin-top: 5px;">
+            <div class="d-flex align-content-center">
                 <span style="display: inline-block; margin-right: 5px;">
                     <img src="{% static 'deps/icons/R.svg' %}" alt="иконка" style="width: 16px; height: 16px;">
                 </span>
@@ -95,5 +95,17 @@
 <a href="{{ previous_url }}" class="btn btn-primary ms-5 m-3">
     Назад
 </a>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 feature-column" style="text-align: center">
+            <h2 class="fs-3 fw-bolder">Польза сативы</h2>
+            <p>Сатива известна своими стимулирующими эффектами. Она может помочь повысить уровень энергии, улучшить настроение и способствовать креативности. Сатива часто используется для лечения депрессии, хронической усталости и других состояний, связанных с низким уровнем энергии.</p>
+        </div>
+        <div class="col-md-6 feature-column" style="text-align: center">
+            <h2 class="fs-3 fw-bolder">Польза индики</h2>
+            <p>Индика, в свою очередь, известна своими расслабляющими свойствами. Она может помочь снять стресс, уменьшить тревожность и улучшить качество сна. Индика часто используется для лечения бессонницы, боли и других состояний, требующих расслабления.</p>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -105,3 +105,68 @@ html, body {
     transition: background-color 0.3s; /* Плавный переход цвета */
 }
 
+
+
+/*-------------- Стили для ссылки на скидочные товары ----------------*/
+
+/* Основные стили для контейнера */
+.image-container {
+    position: relative;
+    width: 100%; /* Ширина контейнера */
+    max-width: 800px; /* Максимальная ширина */
+    margin: 0 auto; /* Центрирование контейнера */
+}
+
+/* Стили для картинки */
+.overlay-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Стили для оверлея */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Затемнение (чёрный с прозрачностью 80%) */
+    display: flex;
+    align-items: center; /* Вертикальное центрирование */
+    justify-content: center; /* Горизонтальное центрирование */
+    opacity: 0; /* Оверлей скрыт по умолчанию */
+    transition: opacity 0.3s ease; /* Плавное появление */
+}
+
+/* Стили для текста на оверлее */
+.text {
+    font-family: "Great Vibes", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    font-size: 62px; /* Размер шрифта по умолчанию */
+    text-align: center;
+}
+
+/* Эффект при наведении на картинку */
+.image-link:hover .overlay {
+    opacity: 1; /* Показываем оверлей */
+}
+
+/* Медиа-запросы для уменьшения размера шрифта на маленьких устройствах */
+@media (max-width: 1000px) {
+    .text {
+        font-size: 50px; /* Уменьшенный размер шрифта для маленьких экранов */
+    }
+}
+@media (max-width: 600px) {
+    .text {
+        font-size: 46px; /* Уменьшенный размер шрифта для маленьких экранов */
+    }
+}
+@media (max-width: 400px) {
+    .text {
+        font-size: 30px; /* Уменьшенный размер шрифта для маленьких экранов */
+    }
+}

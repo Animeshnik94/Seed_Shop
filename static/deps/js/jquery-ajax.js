@@ -3,6 +3,26 @@ $(document).ready(function () {
     // берем в переменную элемент разметки с id jq-notification для оповещений от ajax
     var successMessage = $("#jq-notification");
 
+    $('#onSaleLink').click(function(e) {
+        e.preventDefault(); // Отменяем стандартное поведение ссылки
+
+        // Получаем текущее значение параметра on_sale из URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const isOnSale = urlParams.get('on_sale') === 'on';
+
+        // Устанавливаем новое значение параметра on_sale
+        const newOnSaleValue = isOnSale ? '' : 'on';
+
+        // Получаем текущий slug категории из URL
+        const categorySlug = window.location.pathname.split('/')[2];
+
+        // Формируем URL для GET-запроса
+        const url = `catalog/categories/all/?on_sale=${newOnSaleValue}&order_by=default`;
+
+        // Отправляем GET-запрос и перезагружаем страницу
+        window.location.href = url;
+    });
+
     // Ловим собыитие клика по кнопке добавить в корзину
     $(document).on("click", ".add-to-cart", function (e) {
         // Блокируем его базовое действие
