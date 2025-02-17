@@ -14,7 +14,7 @@
             {% tag_categories as categories %}
             {% for category in categories %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'catalog:index' category.slug %}">{{ category }}</a>
+                    <a class="nav-link" href="{% url 'catalog:category' category.slug %}">{{ category }}</a>
                 </li>
             {% endfor %}
         </ul>
@@ -27,7 +27,7 @@
             {% tag_growers as growers %}
             {% for grower in growers %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">{{ grower }}</a>
+                    <a class="nav-link" href="{% url 'catalog:category_with_grower' category_slug='all' grower_slug=grower.slug %}">{{ grower }}</a>
                 </li>
             {% endfor %}
         </ul>

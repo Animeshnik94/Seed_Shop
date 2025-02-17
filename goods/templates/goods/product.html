@@ -10,20 +10,29 @@
 {% block content %}
     <div class="row ps-5 pe-5">
     <!-- Колонка с картинкой товара -->
-    <div class="col-md-3">
+    <div class="col-md-3 card">
         {% if product.image %}
             <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid rounded">
         {% else %}
             <img src="{% static "deps/images/not_found.jpg" %}" alt="{{ product.name }}" class="img-fluid rounded">
         {% endif %}
         <div class="d-flex flex-column">
+            <!-- ПРОИЗВОДИТЕЛЬ -->
+            <div class="d-flex align-content-center" style="margin-top: 5px;">
+                <span style="display: inline-block; margin-right: 5px;">
+                    <img src="{% static 'deps/icons/R.svg' %}" alt="иконка" style="width: 16px; height: 16px;">
+                </span>
+                <h3 class="mb-0">
+                    <a href="{% url "catalog:category_with_grower" 'all' product.grower.slug %}" style="text-decoration: none; color: inherit;">{{ product.grower }}</a>
+                </h3>
+            </div>
             <!-- КАТЕГОРИЯ -->
             <div class="d-flex mb-2 align-content-center" style="margin-top: 5px;">
                 <span style="display: inline-block; margin-right: 5px;">
                     <img src="{{product.category.image.url}}" alt="иконка" style="width: 20px; height: 20px;">
                 </span>
                 <h3 class="mb-0">
-                    <a href="{% url "catalog:index" product.category.slug %}" style="text-decoration: none; color: inherit;">{{ product.category.name }}</a>
+                    <a href="{% url "catalog:category" product.category.slug %}" style="text-decoration: none; color: inherit;">{{ product.category.name }}</a>
                 </h3>
             </div>
             <!-- УРОВЕНЬ ТГК -->

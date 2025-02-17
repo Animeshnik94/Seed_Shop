@@ -105,7 +105,3 @@ html, body {
     transition: background-color 0.3s; /* Плавный переход цвета */
 }
 
-.nav-link:hover {
-    background-color: #d6d6d6; /* Цвет фона при наведении */
-    
-}
