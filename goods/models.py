@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
 
@@ -65,8 +66,10 @@ class Product(models.Model):
     def sell_price(self):
         if self.discount:
             return round(self.price - self.price * self.discount / 100, 2)
-        return self.price 
-    
+        return self.price
+
     def save(self, *args, **kwargs):
+        if self.sativa_share > 100 or self.sativa_share < 0:
+            raise ValueError("Доля сативы должна быть в диапазоне от 0 до 100.")
         self.indica_share = 100 - self.sativa_share
         super().save(*args, **kwargs)
