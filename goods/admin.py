@@ -25,7 +25,7 @@ class ProductsAdmin(admin.ModelAdmin):
         ("price", "discount"),
         "quantity",
         "flowering_time",
-        ("sativa_share", "indica_share"),
+        ("sativa_share"),
         "thc"
     ]
 

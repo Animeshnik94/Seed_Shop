@@ -3,6 +3,7 @@ $(document).ready(function () {
     // берем в переменную элемент разметки с id jq-notification для оповещений от ajax
     var successMessage = $("#jq-notification");
 
+    // Ловим событие перехода по картинке-ссылке на товары со скидкой
     $('#onSaleLink').click(function(e) {
         e.preventDefault(); // Отменяем стандартное поведение ссылки
 
@@ -38,7 +39,7 @@ $(document).ready(function () {
         // Из атрибута href берем ссылку на контроллер django
         var add_to_cart_url = $(this).attr("href");
 
-        // делаем post запрос через ajax не перезагружая страницу
+        // Делаем post запрос через ajax не перезагружая страницу
         $.ajax({
             type: "POST",
             url: add_to_cart_url,
@@ -212,7 +213,7 @@ $(document).ready(function () {
         $('#exampleModal').modal('show');
     });
 
-    // Собыите клик по кнопке закрыть окна корзины
+    // Событие клик по кнопке закрыть окна корзины
     $('#exampleModal .btn-close').click(function () {
         $('#exampleModal').modal('hide');
     });

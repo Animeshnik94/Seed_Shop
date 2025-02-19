@@ -12,13 +12,13 @@
     <!-- Колонка с картинкой товара -->
     <div class="col-md-3 card">
         {% if product.image %}
-            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid rounded">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid rounded card-img-top" style="height: 200px; object-fit: cover;">
         {% else %}
-            <img src="{% static "deps/images/not_found.jpg" %}" alt="{{ product.name }}" class="img-fluid rounded">
+            <img src="{% static "deps/images/not_found.jpg" %}" alt="{{ product.name }}" class="img-fluid rounded card-img-top" style="height: 200px; object-fit: cover;">
         {% endif %}
         <div class="d-flex flex-column">
             <!-- ПРОИЗВОДИТЕЛЬ -->
-            <div class="d-flex align-content-center">
+            <div class="d-flex align-content-center mt-2">
                 <span style="display: inline-block; margin-right: 5px;">
                     <img src="{% static 'deps/icons/R.svg' %}" alt="иконка" style="width: 16px; height: 16px;">
                 </span>

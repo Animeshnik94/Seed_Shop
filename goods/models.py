@@ -39,12 +39,13 @@ class Product(models.Model):
     flowering_time = models.PositiveIntegerField(default=0, verbose_name='Длительность (дни)')
     sativa_share = models.PositiveIntegerField(default=0, verbose_name='Доля сативы (%)')
     indica_share = models.PositiveIntegerField(default=0, verbose_name='Доля индики (%)')
-    thc = models.PositiveIntegerField(default=0, verbose_name='ТГК (%)') 
+    thc = models.PositiveIntegerField(default=0, verbose_name='ТГК (%)')
+    #data_added = models.DateTimeField(auto_now_add=True)
     # Внешние ключи 
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE, verbose_name='Категория')
     grower = models.ForeignKey(to=Grower, on_delete=models.CASCADE, verbose_name='Производитель')
     # Внешний ключ. FK categories. PROTECT-если все связанные товары не удалены, удалить категорию невозможно
-    #CASCADE- при удалении категории удалятся и все связанные товары
+    #CASCADE - при удалении категории удалятся и все связанные товары
     #SET_DEFAULT(something)- в поле категория товаров будет указано значение по умолчанию 
 
     class Meta:

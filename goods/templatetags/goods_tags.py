@@ -1,6 +1,6 @@
 from django import template
 from urllib.parse import urlencode
-from goods.models import Category
+from goods.models import Category, Product
 from goods.models import Grower
 
 register = template.Library()
