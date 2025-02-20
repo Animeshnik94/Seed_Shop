@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-from goods.utils import get_popular_products, get_new_products
+from goods.utils import get_popular_products, get_new_products, get_powerful_products
 from goods.models import Product
 
 
@@ -17,6 +17,7 @@ class IndexView(TemplateView):
         context['title'] = 'Seed Shop - Главная'
         context['popular_products'] = get_popular_products(limit=8)
         context['new_products'] = get_new_products(limit=8)
+        context['powerful_products'] = get_powerful_products(limit=8)
 
         return context
 

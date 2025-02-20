@@ -35,6 +35,18 @@ def get_new_products(limit=8):
 
     return new_products
 
+#---------- Список самых мощных сортов ---------
+def get_powerful_products(limit=8):
+    """
+    Возвращает список мощных товаров.
+    :param limit: Количество товаров (по умолчанию 8).
+    :return: QuerySet мощных товаров.
+    """
+    powerful_products = Product.objects.order_by('-thc')[:limit]
+
+    return powerful_products
+
+#---------- Текстовый поиск ------------
 def q_search(query): # Функция необходима для поиска товара через форму поиска
     if query.isdigit() and len(query) <= 5: 
         return Product.objects.filter(id=int(query)) # возвращает товары по id
