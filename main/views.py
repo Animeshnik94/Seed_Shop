@@ -1,9 +1,7 @@
-from django.db.models import Count
-from django.shortcuts import render
 from django.views.generic import TemplateView
-
+from goods.utils import get_popular_products, get_new_products
 from goods.models import Product
-from orders.models import OrderItem
+
 
 
 class IndexView(TemplateView):
@@ -15,18 +13,10 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Seed Shop - Главная'
 
-        # Получаем топ-8 самых популярных товаров
-        popular_products = OrderItem.objects.values('product').annotate(total_sold=Count('product')).order_by(
-            '-total_sold')[:8] # Возвращает <QuerySet [{'product': 1, 'total_sold': 10},
-                                                     # {'product': 3, 'total_sold': 8},
-                                                     # {'product': 2, 'total_sold': 5}, ...]>
-        # Возвращает список id популярных товаров
-        popular_product_ids = [item['product'] for item in popular_products]
-        # Создает список из популярных товаров по их id
-        popular_products_list = Product.objects.filter(id__in=popular_product_ids)
-        context['popular_products'] = popular_products_list
+        context['title'] = 'Seed Shop - Главная'
+        context['popular_products'] = get_popular_products(limit=8)
+        context['new_products'] = get_new_products(limit=8)
 
         return context
 

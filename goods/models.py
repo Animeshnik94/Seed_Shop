@@ -41,7 +41,7 @@ class Product(models.Model):
     sativa_share = models.PositiveIntegerField(default=0, verbose_name='Доля сативы (%)')
     indica_share = models.PositiveIntegerField(default=0, verbose_name='Доля индики (%)')
     thc = models.PositiveIntegerField(default=0, verbose_name='ТГК (%)')
-    #data_added = models.DateTimeField(auto_now_add=True)
+    date_added = models.DateTimeField(auto_now_add=True, null=True, blank=True ,verbose_name="Дата добавления")
     # Внешние ключи 
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE, verbose_name='Категория')
     grower = models.ForeignKey(to=Grower, on_delete=models.CASCADE, verbose_name='Производитель')
@@ -59,7 +59,7 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse("catalog:product", kwargs={"product_slug": self.slug})
-    
+
     def display_id(self):
         return f'{self.id:05}'
     

@@ -7,6 +7,11 @@ class CategoriesAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('name',)}
     list_display = ["name",]
 
+@admin.register(Grower)
+class GrowerAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug' : ('name',)}
+    list_display = ["name",]
+
 @admin.register(Product)
 class ProductsAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('name',)}
@@ -14,7 +19,7 @@ class ProductsAdmin(admin.ModelAdmin):
     list_editable = ["discount", ]
     search_fields = ["name", "description", "grower__name"]
     list_filter = ["category", "grower__name"]
-    readonly_fields = ["indica_share"]
+    readonly_fields = ["indica_share", "date_added"]
     fields = [
         "name",
         "category",
@@ -25,11 +30,8 @@ class ProductsAdmin(admin.ModelAdmin):
         ("price", "discount"),
         "quantity",
         "flowering_time",
-        ("sativa_share"),
-        "thc"
+        "sativa_share",
+        "thc",
+        "date_added",
     ]
 
-@admin.register(Grower)
-class GrowerAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug' : ('name',)}
-    list_display = ["name",]
