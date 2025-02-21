@@ -8,5 +8,6 @@
 {% block content %}
     <h2 class="fs-2 mb-5">Тут пока нет контента :(</h2>
     <img src="{% static "deps/images/sad_girl.gif" %}" alt="sad:(">
-    <p class="fs-5 mt-5">{% if user.is_authenticated %}Тебя зовут - {{ user.username }} {% else %} Ты не авторизован {% endif %} </p>
+    <p class="fs-5 mt-5" >{% if user.is_authenticated %}Тебя зовут - {{ user.username }} {% else %} Ты не авторизован {% endif %} </p>
+
 {% endblock %}

@@ -108,4 +108,25 @@
     </div>
 </div>
 
+<div class="container mt-5">
+    <h2>Отзывы</h2>
+    {% if user.is_authenticated %}
+        <a href="{% url 'reviews:add_review' product.slug %}" class="btn btn-primary">Добавить отзыв</a>
+    {% endif %}
+
+    {% for review in product.reviews.all %}
+        <div class="review">
+            <p><strong>{{ review.user.username }}</strong> ({{ review.rating }}/5)</p>
+            <p>{{ review.text }}</p>
+            <p><small>{{ review.created_at }}</small></p>
+            {% if review.user == user %}
+                <a href="{% url 'reviews:edit_review' review.id %}" class="btn btn-sm btn-secondary">Редактировать</a>
+                <a href="{% url 'reviews:delete_review' review.id %}" class="btn btn-sm btn-danger">Удалить</a>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>Пока нет отзывов.</p>
+    {% endfor %}
+</div>
+
 {% endblock %}
