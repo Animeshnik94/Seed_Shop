@@ -39,12 +39,17 @@ $(document).ready(function () {
         // Из атрибута href берем ссылку на контроллер django
         var add_to_cart_url = $(this).attr("href");
 
+        // Проверяем есть ли input с количеством товаров
+        var quantityInput = $("#quantity_to_add_to_cart");
+        var quantity = quantityInput.length ? quantityInput.val() : 1;
+
         // Делаем post запрос через ajax не перезагружая страницу
         $.ajax({
             type: "POST",
             url: add_to_cart_url,
             data: {
                 product_id: product_id,
+                quantity_to_add_to_cart : quantity,
                 csrfmiddlewaretoken: $("[name=csrfmiddlewaretoken]").val(),
             },
             success: function (data) {
@@ -57,7 +62,7 @@ $(document).ready(function () {
                 }, 7000);
 
                 // Увеличиваем количество товаров в корзине (отрисовка в шаблоне)
-                cartCount++;
+                cartCount += parseInt(quantity);
                 goodsInCartCount.text(cartCount);
 
                 // Меняем содержимое корзины на ответ от django (новый отрисованный фрагмент разметки корзины)

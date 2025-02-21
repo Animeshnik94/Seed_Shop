@@ -16,16 +16,16 @@ class CartAddView(CartMixin, View):
     def post(self, request):
         product_id = request.POST.get('product_id')
         product = get_object_or_404(Product, id=product_id)
-
+        quantity = int(request.POST.get('quantity_to_add_to_cart'))
         cart = self.get_cart(request, product=product)
 
         if cart:
-            cart.quantity = cart.quantity + 1
+            cart.quantity = cart.quantity + quantity
             cart.save()
         else:
             Cart.objects.create(user=request.user if request.user.is_authenticated else None,
                                 session_key=request.session.session_key if not request.user.is_authenticated else None,
-                                product=product, quantity=1)
+                                product=product, quantity=quantity)
         response_data = {
             'message': 'Товар добавлен в корзину',
             'cart_items_html': self.render_cart(request)
