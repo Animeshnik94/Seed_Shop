@@ -12,6 +12,7 @@ from django.views import View
 from django.views.generic import CreateView, DetailView, UpdateView, TemplateView
 
 from common.mixins import CacheMixin
+from goods.models import Product
 from orders.models import Order, OrderItem
 from carts.models import Cart
 from users.forms import UserLoginForm, UserRegistrationForm, ProfileForm
@@ -108,6 +109,7 @@ class UserCartView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Seed Shop - Корзина'
+        context['products'] = Product.objects.all()
         return context
 
 @method_decorator(login_required, name='dispatch')

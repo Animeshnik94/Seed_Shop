@@ -257,3 +257,12 @@ html, body {
         height: 30px;
     }
 }
+
+/* Стилизация звездочек */
+.rating-stars {
+    color: #ffc107; /* Цвет звезд (желтый) */
+    font-size: 1.2em; /* Размер звезд */
+}
+.star {
+    margin-right: 2px; /* Отступ между звездами */
+}
